@@ -140,18 +140,17 @@ public function apiMinuman()
 public function storeMakanan(Request $request)
 {
     $request->validate([
-        'name' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'price' => 'required|numeric',
-        'image' => 'nullable|string',
-    ]);
+    'name' => 'required|string|max:255',
+    'description' => 'nullable|string',
+    'price' => 'required|numeric',
+]);
 
     $barang = Menu::create([
         'name' => $request->name,
         'description' => $request->description,
         'category' => 'makanan',
         'price' => $request->price,
-        'image' => $request->image,
+
     ]);
 
     return response()->json([
@@ -166,7 +165,7 @@ public function storeMinuman(Request $request)
         'name' => 'required|string|max:255',
         'description' => 'nullable|string',
         'price' => 'required|numeric',
-        'image' => 'nullable|string',
+
     ]);
 
     $barang = Menu::create([
@@ -174,7 +173,7 @@ public function storeMinuman(Request $request)
         'description' => $request->description,
         'category' => 'minuman',
         'price' => $request->price,
-        'image' => $request->image,
+
     ]);
 
     return response()->json([
@@ -190,7 +189,7 @@ public function apiUpdateMakanan(Request $request, $id)
         'name' => 'sometimes|required|string|max:255',
         'description' => 'nullable|string',
         'price' => 'sometimes|required|numeric',
-        'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+
     ]);
 
     // Update data biasa
@@ -223,7 +222,7 @@ public function apiUpdateMinuman(Request $request, $id)
         'name' => 'sometimes|required|string|max:255',
         'description' => 'nullable|string',
         'price' => 'sometimes|required|numeric',
-        'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+
     ]);
 
     // Update data biasa
