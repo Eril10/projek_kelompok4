@@ -28,12 +28,42 @@
 
                     <x-nav-link :href="route('kontak')" :active="request()->routeIs('kontak')">
                         {{ __('Kontak') }}
-                    </x-nav-link>
+                 </x-nav-link>
+                 <x-nav-link :href="route('api.kelompok')" :active="request()->routeIs('api.kelompok')">
+                        {{ __('Kelompok') }}
+                </x-nav-link>
+{{-- 🔽 Dropdown API Kelompok --}}
+<div class="flex items-center">
+    <x-dropdown align="left" width="48">
+        <x-slot name="trigger">
+            <button class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-300 transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md hover:text-white focus:outline-none">
+                API Kelompok
+                <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+            </button>
+        </x-slot>
+
+        <x-slot name="content">
+            {{-- 🧩 Daftar API Kelompok --}}
+            <x-dropdown-link :href="route('kelompok2.index')">{{ __('Kelompok 2 - Web Tripnesia') }}</x-dropdown-link>
+            <x-dropdown-link :href="route('kelompok3.index')">{{ __('Kelompok 3 - Gadget House') }}</x-dropdown-link>
+            <x-dropdown-link :href="route('kelompok5.index')">{{ __('Kelompok 5 - Caffe Shop') }}</x-dropdown-link>
+            <x-dropdown-link :href="route('kelompok6.index')">{{ __('Kelompok 6 - Reservasi') }}</x-dropdown-link>
+            <x-dropdown-link :href="route('kelompok9.index')">{{ __('Kelompok 9 - JustBuy (Akun Game)') }}</x-dropdown-link>
+
+        </x-slot>
+    </x-dropdown>
+</div>
+
+
+
                     <x-nav-link :href="route('pesanan.index')" :active="request()->routeIs('pesanan.index')">
                         {{ __('Lihat Pesanan') }}
                     </x-nav-link>
 
                     @if (Auth::check() && Auth::user()->role === 'admin')
+
                         <x-nav-link :href="route('barang.create')" :active="request()->routeIs('barang.create')">
                             {{ __('Tambah Menu') }}
                         </x-nav-link>
@@ -79,6 +109,15 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('api.kelompok')" :active="request()->routeIs('api.kelompok')">
+                {{ __('Kelompok') }}
+            </x-responsive-nav-link>
+        <div class="pt-3 mt-3 border-t border-gray-700">
+        <div class="px-4 text-sm font-medium text-gray-400">API Kelompok</div>
+            <x-responsive-nav-link :href="route('kelompok3.index')">{{ __('Kelompok 3 - Gadget House') }}</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('kelompok5.index')">{{ __('Kelompok 5 - Caffe Shop') }}</x-responsive-nav-link>
+        </div>
+
             <x-responsive-nav-link :href="route('makanan')" :active="request()->routeIs('makanan')">
                 {{ __('Makanan') }}
             </x-responsive-nav-link>
