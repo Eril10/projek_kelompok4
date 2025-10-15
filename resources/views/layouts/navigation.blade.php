@@ -46,10 +46,12 @@
 
         <x-slot name="content">
             {{-- 🧩 Daftar API Kelompok --}}
+            <x-dropdown-link :href="route('kelompok1.index')">{{ __('Kelompok 1 - Web Rental Baju') }}</x-dropdown-link>
             <x-dropdown-link :href="route('kelompok2.index')">{{ __('Kelompok 2 - Web Tripnesia') }}</x-dropdown-link>
             <x-dropdown-link :href="route('kelompok3.index')">{{ __('Kelompok 3 - Gadget House') }}</x-dropdown-link>
             <x-dropdown-link :href="route('kelompok5.index')">{{ __('Kelompok 5 - Caffe Shop') }}</x-dropdown-link>
             <x-dropdown-link :href="route('kelompok6.index')">{{ __('Kelompok 6 - Reservasi') }}</x-dropdown-link>
+            <x-dropdown-link :href="route('kelompok7.index')">{{ __('Kelompok 7 - Web SobatPromo') }}</x-dropdown-link>
             <x-dropdown-link :href="route('kelompok9.index')">{{ __('Kelompok 9 - JustBuy (Akun Game)') }}</x-dropdown-link>
 
         </x-slot>
@@ -114,8 +116,13 @@
             </x-responsive-nav-link>
         <div class="pt-3 mt-3 border-t border-gray-700">
         <div class="px-4 text-sm font-medium text-gray-400">API Kelompok</div>
+            <x-responsive-nav-link :href="route('kelompok1.index')">{{ __('Kelompok 1 - Web Rental Baju') }}</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('kelompok2.index')">{{ __('Kelompok 2 - Web Tripnesia') }}</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('kelompok3.index')">{{ __('Kelompok 3 - Gadget House') }}</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('kelompok5.index')">{{ __('Kelompok 5 - Caffe Shop') }}</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('kelompok6.index')">{{ __('Kelompok 6 - Reservasi') }}</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('kelompok7.index')">{{ __('Kelompok 7 - Web SobatPromo') }}</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('kelompok9.index')">{{ __('Kelompok 9 - JustBuy (Akun Game)') }}</x-responsive-nav-link>
         </div>
 
             <x-responsive-nav-link :href="route('makanan')" :active="request()->routeIs('makanan')">
