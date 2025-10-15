@@ -53,7 +53,7 @@ class Kelompok2Controller extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $response = Http::withoutVerifying()->put("https://v0-tripnesia-mvp-web-app.vercel.app/api/bookings?action=update&id=$id", [
+            $response = Http::withoutVerifying()->put("https://tripnesia-vm51.vercel.app/api/bookings?action=update&id=$id", [
                 'id' => $id,
                 'name' => $request->name,
                 'type' => $request->type,
