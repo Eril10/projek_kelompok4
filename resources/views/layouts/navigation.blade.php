@@ -52,6 +52,7 @@
             <x-dropdown-link :href="route('kelompok5.index')">{{ __('Kelompok 5 - Caffe Shop') }}</x-dropdown-link>
             <x-dropdown-link :href="route('kelompok6.index')">{{ __('Kelompok 6 - Reservasi') }}</x-dropdown-link>
             <x-dropdown-link :href="route('kelompok7.index')">{{ __('Kelompok 7 - Web SobatPromo') }}</x-dropdown-link>
+            <x-dropdown-link :href="route('kelompok8.index')">{{ __('Kelompok 8 - Web Cafeku') }}</x-dropdown-link>
             <x-dropdown-link :href="route('kelompok9.index')">{{ __('Kelompok 9 - JustBuy (Akun Game)') }}</x-dropdown-link>
 
         </x-slot>
@@ -122,6 +123,7 @@
             <x-responsive-nav-link :href="route('kelompok5.index')">{{ __('Kelompok 5 - Caffe Shop') }}</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('kelompok6.index')">{{ __('Kelompok 6 - Reservasi') }}</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('kelompok7.index')">{{ __('Kelompok 7 - Web SobatPromo') }}</x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('kelompok8.index')">{{ __('Kelompok 7 - Web Cafeku') }}</x-responsive-nav-link>
             <x-responsive-nav-link :href="route('kelompok9.index')">{{ __('Kelompok 9 - JustBuy (Akun Game)') }}</x-responsive-nav-link>
         </div>
 
