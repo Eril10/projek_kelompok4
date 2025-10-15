@@ -29,9 +29,6 @@
                     <x-nav-link :href="route('kontak')" :active="request()->routeIs('kontak')">
                         {{ __('Kontak') }}
                  </x-nav-link>
-                 <x-nav-link :href="route('api.kelompok')" :active="request()->routeIs('api.kelompok')">
-                        {{ __('Kelompok') }}
-                </x-nav-link>
 {{-- 🔽 Dropdown API Kelompok --}}
 <div class="flex items-center">
     <x-dropdown align="left" width="48">
