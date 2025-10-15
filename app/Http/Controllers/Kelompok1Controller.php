@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class Kelompok1Controller extends Controller
 {
-    private $baseUrl = 'https://sprightly-starburst-ae6a2a.netlify.app/';
+    private $baseUrl = 'https://rental-baju.netlify.app/api/public/products';
 
     public function index()
     {
