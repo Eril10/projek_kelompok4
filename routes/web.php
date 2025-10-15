@@ -4,10 +4,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\ApiKelompokController;
+use App\Http\Controllers\Kelompok1Controller;
 use App\Http\Controllers\Kelompok2Controller;
 use App\Http\Controllers\Kelompok3Controller;
 use App\Http\Controllers\Kelompok5Controller;
 use App\Http\Controllers\Kelompok6Controller;
+use App\Http\Controllers\Kelompok7Controller;
 use App\Http\Controllers\Kelompok9Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -66,6 +68,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/api-kelompok', [ApiKelompokController::class, 'index'])->name('api.kelompok');
 });
 // Route untuk halaman web
+
+Route::get('/kelompok1', [Kelompok1Controller::class, 'index'])->name('kelompok1.index');
+Route::post('/kelompok1', [Kelompok1Controller::class, 'store'])->name('kelompok1.store');
+Route::put('/kelompok1/{id}', [Kelompok1Controller::class, 'update'])->name('kelompok1.update');
+Route::delete('/kelompok1/{id}', [Kelompok1Controller::class, 'destroy'])->name('kelompok1.destroy');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/kelompok5', [Kelompok5Controller::class, 'index'])->name('kelompok5.index');
     Route::get('/kelompok5/create', [Kelompok5Controller::class, 'create'])->name('kelompok5.create');
@@ -81,6 +89,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/kelompok6/{id}', [Kelompok6Controller::class, 'update'])->name('kelompok6.update');
     Route::delete('/kelompok6/{id}', [Kelompok6Controller::class, 'destroy'])->name('kelompok6.destroy');
 });
+
+Route::get('/kelompok7', [Kelompok7Controller::class, 'index'])->name('kelompok7.index');
+Route::post('/kelompok7', [Kelompok7Controller::class, 'store'])->name('kelompok7.store');
+Route::put('/kelompok7/{id}', [Kelompok7Controller::class, 'update'])->name('kelompok7.update');
+Route::delete('/kelompok7/{id}', [Kelompok7Controller::class, 'destroy'])->name('kelompok7.destroy');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/kelompok9', [Kelompok9Controller::class, 'index'])->name('kelompok9.index');
@@ -101,7 +114,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/kelompok3/{id}', [Kelompok3Controller::class, 'destroy'])->name('kelompok3.destroy');
 });
 
-// Route untuk endpoint API (opsional)
 Route::get('/api/kelompok5', [Kelompok5Controller::class, 'apiList']);
 Route::get('/api/kelompok5/{id}', [Kelompok5Controller::class, 'apiDetail']);
 
