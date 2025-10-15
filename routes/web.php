@@ -3,13 +3,13 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PemesananController;
 use App\Http\Controllers\BarangController;
-use App\Http\Controllers\ApiKelompokController;
 use App\Http\Controllers\Kelompok1Controller;
 use App\Http\Controllers\Kelompok2Controller;
 use App\Http\Controllers\Kelompok3Controller;
 use App\Http\Controllers\Kelompok5Controller;
 use App\Http\Controllers\Kelompok6Controller;
 use App\Http\Controllers\Kelompok7Controller;
+use App\Http\Controllers\Kelompok8Controller;
 use App\Http\Controllers\Kelompok9Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -64,9 +64,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
 });
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/api-kelompok', [ApiKelompokController::class, 'index'])->name('api.kelompok');
-});
+
 // Route untuk halaman web
 
 Route::get('/kelompok1', [Kelompok1Controller::class, 'index'])->name('kelompok1.index');
@@ -94,6 +92,12 @@ Route::get('/kelompok7', [Kelompok7Controller::class, 'index'])->name('kelompok7
 Route::post('/kelompok7', [Kelompok7Controller::class, 'store'])->name('kelompok7.store');
 Route::put('/kelompok7/{id}', [Kelompok7Controller::class, 'update'])->name('kelompok7.update');
 Route::delete('/kelompok7/{id}', [Kelompok7Controller::class, 'destroy'])->name('kelompok7.destroy');
+
+Route::get('/kelompok8', [Kelompok8Controller::class, 'index'])->name('kelompok8.index');
+Route::get('/kelompok8/edit/{id}', [Kelompok8Controller::class, 'show'])->name('kelompok8.edit');
+Route::post('/kelompok8/store', [Kelompok8Controller::class, 'store'])->name('kelompok8.store');
+Route::put('/kelompok8/update/{id}', [Kelompok8Controller::class, 'update'])->name('kelompok8.update');
+Route::delete('/kelompok8/delete/{id}', [Kelompok8Controller::class, 'destroy'])->name('kelompok8.delete');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/kelompok9', [Kelompok9Controller::class, 'index'])->name('kelompok9.index');
