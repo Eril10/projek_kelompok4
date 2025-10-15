@@ -109,9 +109,6 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('api.kelompok')" :active="request()->routeIs('api.kelompok')">
-                {{ __('Kelompok') }}
-            </x-responsive-nav-link>
         <div class="pt-3 mt-3 border-t border-gray-700">
         <div class="px-4 text-sm font-medium text-gray-400">API Kelompok</div>
             <x-responsive-nav-link :href="route('kelompok1.index')">{{ __('Kelompok 1 - Web Rental Baju') }}</x-responsive-nav-link>
