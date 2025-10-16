@@ -75,7 +75,10 @@
                                     <img src="{{ $item['preview_image'] ?? '' }}" class="object-cover w-16 h-16 rounded">
                                 </td>
                                 <td class="px-4 py-2 text-center border">
-                                    <form action="{{ route('kelompok9.destroy', ['game' => 'ML', 'id' => $item['id'] ?? 0]) }}" method="POST" onsubmit="return confirm('Hapus akun ini?')" class="inline-block">
+                                    <form action="{{ route('kelompok9.destroy', ['id' => $item['id'] ?? 0]) }}"
+                                          method="POST"
+                                          onsubmit="return confirm('Hapus akun ML ini?')"
+                                          class="inline-block">
                                         @csrf @method('DELETE')
                                         <button class="px-3 py-1 text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
                                     </form>
@@ -111,10 +114,10 @@
                                     <img src="{{ $item['preview_image'] ?? '' }}" class="object-cover w-16 h-16 rounded">
                                 </td>
                                 <td class="px-4 py-2 text-center border">
-                                    <form action="{{ route('kelompok9.destroy', ['game' => 'AOV', 'id' => $item['id'] ?? 0]) }}" method="POST" onsubmit="return confirm('Hapus akun ini?')" class="inline-block">
-                                        @csrf @method('DELETE')
-                                        <button class="px-3 py-1 text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
-                                    </form>
+                                    <button class="px-3 py-1 text-white bg-gray-400 rounded cursor-not-allowed"
+                                            title="Hapus hanya tersedia untuk akun ML" disabled>
+                                        Hapus
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
@@ -147,15 +150,16 @@
                                     <img src="{{ $item['preview_image'] ?? '' }}" class="object-cover w-16 h-16 rounded">
                                 </td>
                                 <td class="px-4 py-2 text-center border">
-                                    <form action="{{ route('kelompok9.destroy', ['game' => 'WR', 'id' => $item['id'] ?? 0]) }}" method="POST" onsubmit="return confirm('Hapus akun ini?')" class="inline-block">
-                                        @csrf @method('DELETE')
-                                        <button class="px-3 py-1 text-white bg-red-600 rounded hover:bg-red-700">Hapus</button>
-                                    </form>
+                                    <button class="px-3 py-1 text-white bg-gray-400 rounded cursor-not-allowed"
+                                            title="Hapus hanya tersedia untuk akun ML" disabled>
+                                        Hapus
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>
