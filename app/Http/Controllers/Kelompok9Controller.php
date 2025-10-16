@@ -60,28 +60,30 @@ class Kelompok9Controller extends Controller
     }
 
     // 🔹 Hapus akun
-    public function destroy($id, $game)
-    {
-        try {
-            $endpoint = match($game) {
-                'ML'  => 'delete_ML.php',
-                'AOV' => 'delete_AOV.php',
-                'WR'  => 'delete_WR.php',
-                default => null
-            };
+public function destroy($id, $game)
+{
+    try {
+        $endpoint = match($game) {
+            'ML'  => 'delete_ML.php',
+            'AOV' => 'delete_AOV.php',
+            'WR'  => 'delete_WR.php',
+            default => null
+        };
+        if (!$endpoint) return back()->with('error', 'Game tidak valid!');
 
-            if (!$endpoint) {
-                return back()->with('error', 'Game tidak valid!');
-            }
+        // umumnya skrip PHP expect POST form, bukan DELETE
+        $response = Http::asForm()->post($this->base . $endpoint, [
+            'id' => $id,
+            // kalau skrip kamu pakai method override, boleh tambahkan:
+            // '_method' => 'DELETE',
+        ]);
 
-            $response = Http::asJson()->delete($this->base . $endpoint, ['id' => $id]);
+        return $response->successful()
+            ? back()->with('success', 'Akun berhasil dihapus!')
+            : back()->with('error', 'Gagal menghapus data. Status: '.$response->status().' | '.$response->body());
 
-            return $response->successful()
-                ? back()->with('success', 'Akun berhasil dihapus!')
-                : back()->with('error', 'Gagal menghapus data. Status: '.$response->status());
-
-        } catch (\Exception $e) {
-            return back()->with('error', 'Terjadi kesalahan: '.$e->getMessage());
-        }
+    } catch (\Exception $e) {
+        return back()->with('error', 'Terjadi kesalahan: '.$e->getMessage());
     }
+}
 }
