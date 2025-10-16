@@ -7,15 +7,15 @@ use Illuminate\Support\Facades\Http;
 
 class Kelompok9Controller extends Controller
 {
-    private $base = 'https://projekkelompok9-production.up.railway.app/api/';
+    private $baseUrl = 'https://projekkelompok9-production.up.railway.app/api/';
 
-    // 🔹 Tampilkan semua kategori data
+    // 📄 Tampilkan semua data
     public function index()
     {
         try {
-            $ml = Http::get($this->base . 'get_data.php')->json();
-            $aov = Http::get($this->base . 'get_dataAOV.php')->json();
-            $wr  = Http::get($this->base . 'get_dataWR.php')->json();
+            $ml  = Http::withoutVerifying()->get($this->baseUrl . 'get_data.php')->json();
+            $aov = Http::withoutVerifying()->get($this->baseUrl . 'get_dataAOV.php')->json();
+            $wr  = Http::withoutVerifying()->get($this->baseUrl . 'get_dataWR.php')->json();
         } catch (\Exception $e) {
             $ml = $aov = $wr = ['error' => $e->getMessage()];
         }
@@ -23,67 +23,57 @@ class Kelompok9Controller extends Controller
         return view('kelompok9.index', compact('ml', 'aov', 'wr'));
     }
 
-    // 🔹 Tambah akun baru
+    // ➕ Tambah akun baru
     public function store(Request $request)
     {
-        try {
-            $endpoint = match($request->game) {
-                'ML'  => 'insert_data.php',
-                'AOV' => 'insert_dataAOV.php',
-                'WR'  => 'insert_dataWR.php',
-                default => null
-            };
+        $endpoint = match($request->game) {
+            'ML'  => 'insert_data.php',
+            'AOV' => 'insert_dataAOV.php',
+            'WR'  => 'insert_dataWR.php',
+            default => null
+        };
 
-            if (!$endpoint) {
-                return back()->with('error', 'Game tidak valid!');
-            }
-
-            $data = [
-                'penjual' => $request->penjual,
-                'skin' => $request->skin,
-                'rank' => $request->rank,
-                'hero' => $request->hero,
-                'price' => $request->price,
-                'deskripsi' => $request->deskripsi,
-                'preview_image' => $request->preview_image,
-            ];
-
-            $response = Http::asJson()->post($this->base . $endpoint, $data);
-
-            return $response->successful()
-                ? back()->with('success', 'Akun berhasil ditambahkan!')
-                : back()->with('error', 'Gagal menambah data. Status: '.$response->status());
-
-        } catch (\Exception $e) {
-            return back()->with('error', 'Terjadi kesalahan: '.$e->getMessage());
+        if (!$endpoint) {
+            return back()->with('error', 'Game tidak valid!');
         }
+
+        $payload = [
+            'penjual' => $request->penjual,
+            'skin' => $request->skin,
+            'rank' => $request->rank,
+            'hero' => $request->hero,
+            'price' => $request->price,
+            'deskripsi' => $request->deskripsi,
+            'preview_image' => $request->preview_image,
+        ];
+
+        $response = Http::withoutVerifying()->post($this->baseUrl . $endpoint, $payload);
+
+        return $response->successful()
+            ? back()->with('success', 'Akun berhasil ditambahkan!')
+            : back()->with('error', 'Gagal menambah data: ' . $response->body());
     }
 
-    // 🔹 Hapus akun
-public function destroy($id, $game)
-{
-    try {
+
+    // ❌ Hapus akun
+    public function destroy($id, $game)
+    {
         $endpoint = match($game) {
             'ML'  => 'delete_ML.php',
             'AOV' => 'delete_AOV.php',
             'WR'  => 'delete_WR.php',
             default => null
         };
-        if (!$endpoint) return back()->with('error', 'Game tidak valid!');
 
-        // umumnya skrip PHP expect POST form, bukan DELETE
-        $response = Http::asForm()->post($this->base . $endpoint, [
-            'id' => $id,
-            // kalau skrip kamu pakai method override, boleh tambahkan:
-            // '_method' => 'DELETE',
-        ]);
+        if (!$endpoint) {
+            return back()->with('error', 'Game tidak valid!');
+        }
+
+        // 🔹 Gunakan POST karena skrip PHP biasanya tidak menerima DELETE
+        $response = Http::withoutVerifying()->post($this->baseUrl . $endpoint, ['id' => $id]);
 
         return $response->successful()
             ? back()->with('success', 'Akun berhasil dihapus!')
-            : back()->with('error', 'Gagal menghapus data. Status: '.$response->status().' | '.$response->body());
-
-    } catch (\Exception $e) {
-        return back()->with('error', 'Terjadi kesalahan: '.$e->getMessage());
+            : back()->with('error', 'Gagal hapus data: ' . $response->body());
     }
-}
 }
